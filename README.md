@@ -1,5 +1,30 @@
 简体中文 | [English](https://github.com/QingdaoU/OnlineJudgeDeploy/blob/2.0/README.en.md)
 
+## What's update?
+
+- Add support C# (Mono)
+
+```bash
+docker compose up judge_server -d
+docker exec -it judge_server bash
+## From official Mono page
+> apt install ca-certificates gnupg
+> gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+> echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list
+> apt update
+> apt install mono-complete
+> /usr/bin/mcs -help ## for check
+docker commit judge-server judge_server:rev2
+docker save -o judge_server_rev2.tar judge_server:rev2
+```
+
+#### How to use
+
+```bash
+docker load -i judge_server_rev2.tar
+docker compose up -d
+```
+
 ## 环境准备
 
 ### Linux 环境
